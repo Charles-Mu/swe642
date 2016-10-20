@@ -3,13 +3,18 @@
 <html>
 	<head >
 		<title>Registration</title>	
+		<script type="text/javascript" src="cookie.js"></script>
+		<script type="text/javascript" src="data.js"></script>
+		<script type="text/javascript" src="form_validation.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="addressauto.js"></script>
 		
 	</head>
 	<header class="header">
 		<h1>CS Department Survey</h1>
 	</header>
-	<body>
-		<link rel="stylesheet" href="css/main.css" />
+	<body onload = "cookie_greet()">
+		<link rel="stylesheet" href="main.css" />
 		<!-- Nav -->
 		<div>
 			<ul >
@@ -17,6 +22,11 @@
 			</ul>
 		</div>
 		<br/>
+		
+		<div id="greet">
+			<p id="greetings1"></p>
+			<p id="greetings2"></p>
+		</div>
 		<div class="bodyContainer">
 			<table style="width: 100%">
 				<tr>
@@ -26,36 +36,54 @@
 					<td>
 						<form id="survey" autocomplete="on">
 							<div>
-								<label id="username">User Name:</label>
-								<input type="text" id="username" placeholder="enter your user name" pattern="[A-Za-z]+" required="true" autofocus="true" />
+								<label>User Name:</label>
+								<input type="text" id="username" placeholder="enter your user name" required="true" autofocus="true" />
+								<!--  pattern="[A-Za-z]+" -->
+                            	<br/>
+                            	<p class="error" id="name_error"></p>								
 							</div>
 							<div>
-								<label id="street">Street Address:</label>
+								<label>Street Address:</label>
 								<input type="text" id="street" placeholder="enter street name" required="true"/>
+								<br/>
+                            	<p class="error" id="street_error"></p>	
+							</div>
+
+							<div>
+								<label>Zip Code:</label>
+								<input type="text" id="zip" onblur="addressAuto()" placeholder="00000" pattern="[\d]{5}" />
+								<p class="error" id="zip_error"></p>
 							</div>
 							<div>
-								<label id="city">City:</label>
-								<input type="text" id="city" placeholder="enter city name" pattern="[A-Za-z]+" required="true"/>
+								<label>City:</label>
+								<input type="text" id="city" placeholder="enter city name" pattern="[A-Za-z ]+" />
+							</div>
+
+							<div>
+								<label>State:</label>
+								<input type="text" id="state" placeholder="enter state" pattern="[A-Za-z]+"  />
 							</div>
 							<div>
-								<label id="zip">Zip Code:</label>
-								<input type="text" id="zip" placeholder="00000" pattern="[\d]{5}" required="true" />
+								<label>E-mail:</label>
+								 <input type="email" id="email" placeholder="enter valid e-mail address" />
+								 <br/>
+                            	<p class="error" id="email_error"></p>
 							</div>
 							<div>
-								<label id="email">E-mail:</label>
-								 <input type="email" id="email" placeholder="enter valid e-mail address" pattern="[A-Za-z]+@[A-Za-z]+\.(com|net|co|edu|gov)" required="true"/>
+								<label>URL:</label>
+								 <input type="url" id="url" placeholder="enter valid url"  />
 							</div>
 							<div>
-								<label id="phone">Phone Number:</label>
+								<label>Phone Number:</label>
 								<input type="text" id="phone" placeholder="###-###-#####" pattern="^[0-9-+s()]*$"/>
 							</div>
 							<div>
-								<label id="date">Date of Survey:</label>
-							 	<input type="text" id="date" placeholder="##/##/####" pattern="([\d]{2}\/[\d]{2}\/[\d]{4})" required="true"/>
+								<label>Date of Survey:</label>
+							 	<input type="text" id="date" placeholder="##/##/####" pattern="([\d]{2}\/[\d]{2}\/[\d]{4})" />
 							</div>
 							<div>
 								<label> High-school graduation time(or expected):</label>
-								<input list="month" name="month" style="width: 100px" placeholder="January" required="true">
+								<input list="month" name="month" style="width: 100px" placeholder="January" >
 								<datalist id="month">
 									<option value="January"></option>
 									<option value="February"></option>
@@ -70,23 +98,25 @@
 									<option value="November"></option>
 									<option value="December"></option>
 								</datalist>
-								<input type="text" style="width: 50px" id="year" placeholder="Year" pattern="\d{4}" required="true"></input>
+								<input type="text" style="width: 50px" id="year" placeholder="Year" pattern="\d{4}" ></input>
 							</div>
 							<div class=checkbox>
 								<label>what do you like most about the campus?</label>
-                            	<input type = "checkbox" name="Q1" >Students</input>
-                            	<input type = "checkbox" name="Q1" >Location</input>
-                            	<input type = "checkbox" name="Q1" >Campus</input>
-                            	<input type = "checkbox" name="Q1" >Atmosphere</input>
-                            	<input type = "checkbox" name="Q1" >Dorm Rooms</input>
-                            	<input type = "checkbox" name="Q1" >Sports</input>
+                            	<input type = "checkbox" name="Q1" value="students" >Students</input>
+                            	<input type = "checkbox" name="Q1" value="location">Location</input>
+                            	<input type = "checkbox" name="Q1" value="campus">Campus</input>
+                            	<input type = "checkbox" name="Q1" value="atmosphere">Atmosphere</input>
+                            	<input type = "checkbox" name="Q1" value="dorm">Dorm Rooms</input>
+                            	<input type = "checkbox" name="Q1" value="sports">Sports</input>
+                            	<br/>
+                            	<p class="error" id="checkbox_error"></p>	
                             </div>
                             <div class=radiobutton>
                             	<label>how you became interested in the university?</label>
-                            	<input type="radio" name="Q2">Friends</input>
-                            	<input type="radio" name="Q2">Television</input>
-                            	<input type="radio" name="Q2">Internet</input>
-                            	<input type="radio" name="Q2">Other</input>
+                            	<input type="radio" name="Q2" value="friends">Friends</input>
+                            	<input type="radio" name="Q2" value="tel">Television</input>
+                            	<input type="radio" name="Q2" value="internet">Internet</input>
+                            	<input type="radio" name="Q2" value="other">Other</input>
                             </div>
                             <div class=textarea>
                             	<label>Additional comments:</label>
@@ -101,9 +131,28 @@
                             	</select>
                             	
                             </div>
-                            <div class="button" >
-							<button id="submitb">Submit</button>
+
+                             <div onchange="data()">
+                            	<label>Data:</label>
+                            	<input id = "data_numbers" type="textbox" name="numbers" placeholder="Please enter at least 11  numbers from 0 to 100"/>
+                            	<br/>
+                            	<p class="error" id="error_message"></p>
+                            </div>
+                            <div>
+								<label id="Average">Average:</label>
+								<p id="Avg_result"></p>
 							</div>
+						  <div>
+								<label id="Maximum">Maximum:</label>
+								<p id="Max_result"></p>
+							</div>
+							<div>
+							<input type="reset" value="Reset">
+                            </div>
+                            <div class="button" >
+							<a href="submit_success.html" onclick="return validation();" id="submitb">Submit</a>
+							</div>
+
 						</form>
 					</td>
 				</tr>
