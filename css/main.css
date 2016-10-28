@@ -10,6 +10,10 @@ h1{
 	color: blue;
 }
 
+h2{
+    color: black;
+}
+
 #nav {
 	text-decoration:none;
 	padding:5px 0;
