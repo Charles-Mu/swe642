@@ -1,0 +1,105 @@
+body{
+	background: #8A2BE2;
+	margin: 0px;
+  	padding: 0px;
+}
+.header{
+	text-shadow: 2px 2px #FFFB00;
+}
+h1{
+	color: blue;
+}
+
+h2{
+    color: black;
+}
+
+#nav {
+	text-decoration:none;
+	padding:5px 0;
+	width:200px;
+	height: 25px;
+	background:#003399;
+	color:#eee;
+	float:left;
+	text-align:center;
+}
+
+
+.bodyContainer{
+	margin:40px;
+	width:80%;
+}
+
+form {
+	width:100%;
+    padding: 2em; 
+    border-radius: 1em;
+}
+
+
+form div + div {
+	/*Make sure that an empty line bettween two divs.*/
+    margin-top: 1em;
+}
+
+label {
+    /*Make sure all labels have same size */
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+}
+
+head {
+	position: absolute;
+	background-color: LightGray;
+	left: 350px;
+	width: 250px;
+}
+
+.logo {
+	 position: relative;
+ 	height: 100px;
+ 	right:0;
+ 	bottom: 0;
+}
+.logo img{
+	position: absolute;
+	right: 0; 
+	 bottom: 0;
+}
+
+.checkbox input{
+	width: 40px;
+}
+.radiobutton input{
+	width: 30px;
+}
+input, textarea, select {
+    font: 1em sans-serif;
+    width: 300px;
+}
+
+textarea {
+    vertical-align: top;
+    resize: vertical;
+}
+
+button {
+	width: 200px;
+	height: 40px;
+	color: green;
+}
+.button {
+    padding-left: 180px;
+}
+
+
+table, th, td {
+    border: 3px solid white;
+}
+
+input[pattern]:invalid{
+	color:red;
+}
+
