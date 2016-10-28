@@ -21,6 +21,7 @@ function showdata(data)
 if(data.zipcodes)
 {
 	var zipinput = document.getElementById("zip").value;
+	console.log(zipinput);
 	var i=0;
 	for(i=0; i<data.zipcodes.length; i++)
 	{
